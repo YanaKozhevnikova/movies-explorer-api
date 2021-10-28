@@ -1,10 +1,4 @@
-const allowedOriginCors = [
-  'http://yana.movies.nomoredomains.monster',
-  'https://yana.movies.nomoredomains.monster',
-  'http://localhost:3000',
-  'https://localhost:3000',
-];
-const allowedMethodsCors = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+const { allowedOriginCors, allowedMethodsCors } = require('../utils/constants');
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;

@@ -1,5 +1,5 @@
-/* eslint-disable no-useless-escape */
 const { celebrate, Joi } = require('celebrate');
+const { urlRegExp } = require('../utils/constants');
 
 module.exports.validateUpdateUserInfo = celebrate({
   body: Joi.object().keys({
@@ -15,9 +15,9 @@ module.exports.validateMovieInfo = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(/https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/),
-    trailer: Joi.string().required().pattern(/https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/),
-    thumbnail: Joi.string().required().pattern(/https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/),
+    image: Joi.string().required().pattern(urlRegExp),
+    trailer: Joi.string().required().pattern(urlRegExp),
+    thumbnail: Joi.string().required().pattern(urlRegExp),
     movieId: Joi.string().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),

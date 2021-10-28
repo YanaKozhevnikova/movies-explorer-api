@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { errorMessages, urlRegExp } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -26,10 +27,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/.test(v);
+        return urlRegExp.test(v);
       },
-      message: 'Некорректная ссылка на картинку',
+      message: errorMessages.incorrectImageUrlFormat,
     },
   },
   trailer: {
@@ -37,10 +37,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/.test(v);
+        return urlRegExp.test(v);
       },
-      message: 'Некорректная ссылка на трейлер',
+      message: errorMessages.incorrectTrailerUrlFormat,
     },
   },
   thumbnail: {
@@ -48,10 +47,9 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-\/.~:?#[\]@!$&'()*+,;=]*/.test(v);
+        return urlRegExp.test(v);
       },
-      message: 'Некорректная ссылка на картинку',
+      message: errorMessages.incorrectThumbnailUrlFormat,
     },
   },
   owner: {
