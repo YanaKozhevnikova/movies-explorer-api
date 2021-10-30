@@ -18,7 +18,7 @@ module.exports.getUserInfo = (req, res, next) => {
       if (!user) {
         throw new NotFoundError(errorMessages.userNotFound);
       }
-      res.status(200).send(user);
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === errorNames.castError) {
@@ -40,7 +40,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (!user) {
         throw new NotFoundError(errorMessages.userNotFound);
       }
-      res.status(200).send(user);
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === errorNames.castError) {
@@ -63,7 +63,7 @@ module.exports.createUser = (req, res, next) => {
           if (!user) {
             throw new NotFoundError(errorMessages.userNotFound);
           }
-          res.status(200).send({
+          res.send({
             email: user.email,
             name: user.name,
             _id: user._id,
@@ -96,7 +96,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
       });
-      res.status(200).send({ message: successMessages.successfullAuth });
+      res.send({ message: successMessages.successfullAuth });
     })
     .catch(() => {
       next(new AuthError(errorMessages.incorrectLogin));
@@ -104,5 +104,5 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.signOut = (req, res) => {
-  res.clearCookie('jwt').status(200).send({ message: successMessages.successfulLogout });
+  res.clearCookie('jwt').send({ message: successMessages.successfulLogout });
 };
