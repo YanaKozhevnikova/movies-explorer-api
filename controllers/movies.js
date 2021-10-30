@@ -6,7 +6,7 @@ const { errorMessages, errorNames } = require('../utils/constants');
 
 module.exports.getMovies = (req, res, next) => {
   Movie.find({})
-    .then((movies) => res.status(200).send(movies))
+    .then((movies) => res.send(movies))
     .catch(next);
 };
 
@@ -38,7 +38,7 @@ module.exports.postMovie = (req, res, next) => {
     movieId,
     owner: req.user._id,
   })
-    .then((movie) => res.status(200).send(movie))
+    .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === errorNames.validationError) {
         throw new IncorrectDataError(errorMessages.incorrectData);
@@ -58,7 +58,8 @@ module.exports.deleteMovie = (req, res, next) => {
         throw new ForbiddenError(errorMessages.movieDeleteDenied);
       }
       Movie.findByIdAndRemove(req.params.movieId)
-        .then((deletedMovie) => res.status(200).send(deletedMovie));
+        .then((deletedMovie) => res.send(deletedMovie))
+        .catch(next);
     })
     .catch((err) => {
       if (err.name === errorNames.castError) {

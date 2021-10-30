@@ -34,8 +34,6 @@ const allowedOriginCors = [
 ];
 const allowedMethodsCors = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
-const urlRegExp = /https?:\/\/(www\.)?[a-zA-Z\d\-.]{1,}\.[a-zA-Z]{1,}[\w\-/.~:?#[\]@!$&'()*+,;=]*/;
-
 const {
   NODE_ENV,
   MONGO_SERVER = 'mongodb://localhost:27017/moviesdb',
@@ -50,7 +48,6 @@ module.exports = {
   successMessages,
   allowedOriginCors,
   allowedMethodsCors,
-  urlRegExp,
   NODE_ENV,
   MONGO_SERVER,
   PORT,

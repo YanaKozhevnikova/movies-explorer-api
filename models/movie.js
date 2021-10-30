@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { errorMessages, urlRegExp } = require('../utils/constants');
+const validator = require('validator');
+const { errorMessages } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -27,7 +28,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return validator.isURL(v);
       },
       message: errorMessages.incorrectImageUrlFormat,
     },
@@ -37,7 +38,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return validator.isURL(v);
       },
       message: errorMessages.incorrectTrailerUrlFormat,
     },
@@ -47,7 +48,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return urlRegExp.test(v);
+        return validator.isURL(v);
       },
       message: errorMessages.incorrectThumbnailUrlFormat,
     },
@@ -58,7 +59,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   nameRU: {

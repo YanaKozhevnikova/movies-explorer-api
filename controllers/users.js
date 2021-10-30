@@ -46,6 +46,9 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (err.name === errorNames.castError) {
         throw new IncorrectDataError(errorMessages.incorrectData);
       }
+      if (err.name === errorNames.mongoServerError && err.code === 11000) {
+        throw new RegistrationEmailError(errorMessages.userExists);
+      }
       next(err);
     })
     .catch(next);
