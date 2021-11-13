@@ -63,6 +63,15 @@ module.exports.createUser = (req, res, next) => {
           if (!user) {
             throw new NotFoundError(errorMessages.userNotFound);
           }
+          const token = jwt.sign(
+            { _id: user._id },
+            JWT_SECRET,
+            { expiresIn: '7d' },
+          );
+          res.cookie('jwt', token, {
+            maxAge: 3600000 * 24 * 7,
+            httpOnly: true,
+          });
           res.send({
             email: user.email,
             name: user.name,
