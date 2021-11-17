@@ -72,11 +72,7 @@ module.exports.createUser = (req, res, next) => {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
           });
-          res.send({
-            email: user.email,
-            name: user.name,
-            _id: user._id,
-          });
+          res.send(user);
         })
         .catch((err) => {
           if (err.name === errorNames.validationError) {

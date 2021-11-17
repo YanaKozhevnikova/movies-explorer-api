@@ -11,8 +11,8 @@ const errorMessages = {
   incorrectImageUrlFormat: 'Некорректный формат ссылки на постер',
   incorrectTrailerUrlFormat: 'Некорректный формат ссылки на трейлер',
   incorrectThumbnailUrlFormat: 'Некорректный формат ссылки на миниатюрное изображение',
-  userExists: 'Пользователь с таким email уже существует',
-  serverError: 'На сервере произошла ошибка',
+  userExists: 'Пользователь с таким email уже существует.',
+  serverError: 'На сервере произошла ошибка.',
 };
 
 const errorNames = {
